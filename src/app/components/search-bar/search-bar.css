@@ -1,0 +1,70 @@
+/* Sticky glass search bar, centred under the hero */
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 4%;
+  background: linear-gradient(rgba(7, 6, 10, 0.78), rgba(7, 6, 10, 0.45));
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid var(--line);
+}
+
+label {
+  display: none;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  width: min(100%, 520px);
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(246, 239, 224, 0.06);
+  color: var(--gold);
+  transition:
+    border-color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease),
+    background 0.3s var(--ease);
+}
+
+.search-container:hover {
+  border-color: rgba(230, 199, 122, 0.55);
+}
+
+.search-container:focus-within {
+  border-color: var(--gold);
+  background: rgba(246, 239, 224, 0.1);
+  box-shadow: 0 0 0 4px rgba(230, 199, 122, 0.14), 0 0 34px rgba(230, 199, 122, 0.22);
+}
+
+.search-container fa-icon {
+  order: -1;
+  font-size: 15px;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ivory);
+  font: 600 14px var(--font-body);
+  letter-spacing: 0.02em;
+}
+
+input::placeholder {
+  color: var(--muted);
+}

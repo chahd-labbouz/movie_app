@@ -1,1 +1,137 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;800&family=Playfair+Display:wght@600;800&display=swap");
+
+:root {
+  --ink: #07060a;
+  --ink-2: #0f0c14;
+  --ivory: #f6efe0;
+  --muted: #a89f8d;
+  --gold: #e6c77a;
+  --gold-deep: #b8893a;
+  --wine: #7a1226;
+  --crimson: #c4162a;
+  --glass: rgba(18, 14, 24, 0.62);
+  --line: rgba(230, 199, 122, 0.28);
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-brand: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  --font-body: "Manrope", "Segoe UI", Arial, sans-serif;
+  --ease: cubic-bezier(0.22, 0.7, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+html {
+  background: var(--ink);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+  background: transparent;
+  color: var(--ivory);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+app-root {
+  display: block;
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* ---------- Dynamic background: slow aurora ---------- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -25%;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 35% at 18% 22%, rgba(122, 18, 38, 0.55), transparent 70%),
+    radial-gradient(38% 34% at 82% 12%, rgba(58, 30, 110, 0.5), transparent 70%),
+    radial-gradient(42% 38% at 72% 88%, rgba(184, 137, 58, 0.28), transparent 70%),
+    radial-gradient(36% 32% at 12% 82%, rgba(15, 59, 58, 0.45), transparent 70%);
+  animation: aurora 38s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* ---------- Dynamic background: drifting gold dust ---------- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20px 30px, rgba(230, 199, 122, 0.85), transparent 60%),
+    radial-gradient(1px 1px at 90px 120px, rgba(246, 239, 224, 0.7), transparent 60%),
+    radial-gradient(2px 2px at 160px 70px, rgba(230, 199, 122, 0.55), transparent 60%),
+    radial-gradient(1px 1px at 230px 190px, rgba(246, 239, 224, 0.55), transparent 60%);
+  background-size: 260px 240px, 340px 300px, 420px 360px, 300px 280px;
+  opacity: 0.55;
+  animation: dust 70s linear infinite;
+}
+
+@keyframes aurora {
+  0% {
+    transform: translate3d(-3%, -2%, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, 2%, 0) rotate(8deg) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-2%, 4%, 0) rotate(-6deg) scale(1.15);
+  }
+}
+
+@keyframes dust {
+  from {
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  to {
+    background-position: 260px -480px, -340px -600px, 420px -720px, -300px -560px;
+  }
+}
+
+/* ---------- Slim gold scrollbars ---------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-deep) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: linear-gradient(var(--gold), var(--gold-deep));
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  body::before,
+  body::after {
+    animation: none;
+  }
+}

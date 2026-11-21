@@ -1,0 +1,40 @@
+@if (selectedMovie(); as movie) {
+    <main class="movie-detail">
+        <img
+            class="movie-poster"
+            [src]="'https://image.tmdb.org/t/p/original/' + movie.poster_path"
+            [alt]="movie.title"
+        />
+        <section class="movie-information" aria-label="Movie details">
+            <div class="movie-metadata">
+                <article class="metadata-card">
+                    <h2>Original title</h2>
+                    <p>{{ movie.original_title }}</p>
+                </article>
+                <article class="metadata-card">
+                    <h2>Original language</h2>
+                    <p>{{ movie.original_language }}</p>
+                </article>
+                <article class="metadata-card">
+                    <h2>Release date</h2>
+                    <p>{{ movie.release_date }}</p>
+                </article>
+                <article class="metadata-card">
+                    <h2>Vote average</h2>
+                    <p>{{ movie.vote_average }}</p>
+                </article>
+                <article class="metadata-card">
+                    <h2>Vote count</h2>
+                    <p>{{ movie.vote_count }}</p>
+                </article>
+            </div>
+            <p class="movie-overview">{{ movie.overview }}</p>
+            <div class="button-container">
+                <button (click)="backToMovieList()">Back to movie list</button>
+                <button (click)="addToWish(movie)">
+                    {{ movieService.isInWishList(movie.id) ? 'Remove from wishlist' : 'Add to wishlist' }}
+                </button>
+            </div>  
+        </section>
+    </main>
+}
